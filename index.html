@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200;0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;0,8..60,800;0,8..60,900;1,8..60,200;1,8..60,300;1,8..60,400;1,8..60,500;1,8..60,600;1,8..60,700;1,8..60,800;1,8..60,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Sargam - A music streaming platform</title>
+</head>
+
+<body>
+    <div class="title__link">
+
+        <div class="title__container">
+            <h1 class="title">Sargam</h1>
+            <p>A music streaming platform</p>
+        </div>
+        <a href="https://github.com/Sanket2004">
+            <i class="fa-brands fa-github github__icon"></i>
+        </a>
+    </div>
+
+    <div class="input__container">
+        <input type="text" id="searchInput" placeholder="Enter song name">
+        <button onclick="searchSong()" id="searchBtn">Search</button>
+    </div>
+
+    <h1 id="initialBody"></h1>
+
+
+
+    <div class="song-container" id="resultsContainer"></div>
+
+    <div class="currently-playing" id="currentlyPlaying"></div>
+
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div id="audioPlayer">
+                <h2 id="audio__name"></h2>
+                <p id="audio__artist"></p>
+                <audio id="modalAudio" controls autoplay>
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="loadingIndicator" class="loader"></div>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="./app.js"></script>
+
+</body>
+
+</html>

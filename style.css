@@ -1,0 +1,192 @@
+* {
+    font-family: 'Source Sans 3', sans-serif;
+}
+
+body {
+    font-family: 'Source Sans 3', sans-serif;
+    display: flex;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    flex-direction: column;
+}
+
+.title {
+    font-family: 'Source Serif 4', serif;
+    font-size: 2rem;
+    text-transform: uppercase;
+    line-height: 0.2rem;
+}
+
+.title__link{
+    text-decoration: none;
+    color: black;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.github__icon{
+    font-size: 1.8rem;
+    color: grey;
+}
+
+.title__container {
+    display: flex;
+    text-align: left;
+    padding-bottom: 0.5rem;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.title__container p {
+    font-size: 0.8rem;
+    line-height: 0.2rem;
+    color: gray;
+}
+
+.song-container {
+    margin-top: 20px;
+    cursor: pointer;
+    width: 100%;
+}
+
+div#resultsContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 40rem;
+}
+
+.results__items {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    align-items: center;
+}
+
+.results__items img{
+    width: 210px;
+    height: 210px;
+}
+
+.song__details{
+    width: 100%;
+}
+
+.song__details h3{
+    font-weight: 800;
+    font-size: 1.35rem;
+    
+}
+
+.song__details p{
+    line-height: 1em;
+}
+
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.close {
+    position: relative;
+    /* top: 10px; */
+    /* right: 10px; */
+    float: right;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+h2#audio__name{
+padding: 0;
+line-height: 1.5rem;
+}
+
+#initialBody{
+    color: rgb(75, 73, 73);
+    font-size: 2rem;
+}
+
+.loader {
+    display: none;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid black;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: auto;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+#searchInput {
+    padding: 1em;
+    width: 100%;
+    font-size: 0.9rem;
+    border: grey 1.5px solid;
+}
+
+#searchInput:focus{
+    border-radius: 5px;
+}
+
+#searchBtn {
+    padding: 1em;
+    font-size: 0.9rem;
+    background-color: grey;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+#searchBtn:active{
+    border-radius: 5px;
+}
+
+.input__container {
+    display: flex;
+    max-width: 20rem;
+    flex-direction: row;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+@media screen and (max-width: 480px) {
+    .results__items {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .results__items img {
+        width: 100%;
+        object-fit: cover;
+        height: 100%;
+    }
+  }
+
+
+  
