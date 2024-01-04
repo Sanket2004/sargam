@@ -10,15 +10,28 @@ body {
     flex-direction: column;
 }
 
+#downloadBtn {
+    width: 100%;
+    background-color: grey;
+    padding: 10px;
+    color: white;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+    cursor: pointer;
+
+}
+
 .sargam__logo {
     width: 3.5em;
 }
 
 .title {
-    font-family: 'Source Serif 4', serif;
+    font-family: 'EB Garamond', serif;
     font-size: 2rem;
     text-transform: uppercase;
-    line-height: 0.2rem;
+    margin: 0;
 }
 
 .title__link {
@@ -31,6 +44,8 @@ body {
     flex-direction: row;
     justify-content: start;
     align-items: center;
+    padding-bottom: 2rem;
+    padding-top: 2rem;
 }
 
 .github__icon {
@@ -43,12 +58,14 @@ body {
     text-align: left;
     flex-direction: column;
     justify-content: center;
+    padding-bottom: 0.2rem;
 }
 
 .title__container p {
     font-size: 0.8rem;
-    line-height: 0.2rem;
     color: gray;
+    margin: 0;
+    padding: 0;
 }
 
 .song-container {
@@ -67,8 +84,9 @@ div#resultsContainer {
 .results__items {
     display: flex;
     flex-direction: row;
-    gap: 2rem;
+    gap: 1rem;
     align-items: center;
+    border-bottom: rgb(211, 211, 211) 2px solid;
 }
 
 .results__items img {
@@ -83,11 +101,14 @@ div#resultsContainer {
 .song__details h3 {
     font-weight: 800;
     font-size: 1.35rem;
+    margin: 0;
 
 }
 
 .song__details p {
     line-height: 1em;
+    margin-top: 8px;
+    margin-bottom: 8px;
 }
 
 
@@ -103,6 +124,7 @@ button.loadBtn {
     color: white;
     width: 100%;
     max-width: 15rem;
+    cursor: pointer;
 }
 
 img#audio__img {
@@ -124,36 +146,222 @@ img#audio__img {
     background-color: rgba(0, 0, 0, 0.7);
     justify-content: center;
     align-items: center;
+    -webkit-animation: fade .5s;
+    animation: fade .5s;
 }
 
 .modal-content {
     background-color: #fff;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 100%;
-    max-width: 20rem;
+    height: 100%;
     border-radius: 5px;
+    overflow-y: auto;
+}
+
+.modal__buttons {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 1rem;
+}
+
+@keyframes fade {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
 
 .close {
-    position: relative;
-    /* top: 10px; */
-    /* right: 10px; */
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    /* padding: 1rem; */
+    background-color: gray;
+    text-align: center;
+    color: white;
     float: right;
-    padding-bottom: 1rem;
+    /* padding-bottom: 1rem; */
     cursor: pointer;
     font-size: 1.2rem;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    -webkit-animation: fade .5s;
+    animation: fade .5s;
 }
+
+div#audioPlayer {
+    max-width: 18rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 5%;
+}
+
+.audio-player {
+    --player-button-width: 3em;
+    --sound-button-width: 2em;
+    --space: .9em;
+    padding: 0;
+    margin-bottom: 1rem;
+}
+
+
+.controls {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.player-button {
+    background-color: gray;
+    color: white;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 0%;
+    border: 0;
+    width: var(--sound-button-width);
+    height: var(--sound-button-width);
+    cursor: pointer;
+    padding: 0;
+    padding: 1.3rem;
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.timeline {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 3.1em;
+    background-color: #e5e5e5;
+    background-size: 0% 100%;
+    background-image: linear-gradient(#b6b6b6, #b6b6b6);
+    background-repeat: no-repeat;
+}
+
+.timeline::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 0.3em;
+    height: 2.5em;
+    border-radius: 0%;
+    cursor: pointer;
+    opacity: 1;
+    transition: all .1s;
+    background-color: gray;
+}
+
+.timeline::-moz-range-thumb {
+    -webkit-appearance: none;
+    width: 1.3em;
+    height: 1.3em;
+    border-radius: 0%;
+    cursor: pointer;
+    opacity: 1;
+    transition: all .1s;
+    background-color: gray;
+}
+
+.timeline::-ms-thumb {
+    -webkit-appearance: none;
+    width: 1em;
+    height: 1em;
+    border-radius: 0%;
+    cursor: pointer;
+    opacity: 1;
+    transition: all .1s;
+    background-color: gray;
+}
+
+.timeline::-webkit-slider-thumb:hover {
+    background-color: #5c5c5c;
+}
+
+
+.timeline::-moz-range-thumb:hover {
+    background-color: #5c5c5c;
+}
+
+
+.timeline::-ms-thumb:hover {
+    background-color: #5c5c5c;
+}
+
+
+.timeline::-webkit-slider-runnable-track {
+    -webkit-appearance: none;
+    box-shadow: none;
+    border: none;
+    background: transparent;
+}
+
+.timeline::-moz-range-track {
+    -webkit-appearance: none;
+    box-shadow: none;
+    border: none;
+    background: transparent;
+}
+
+.timeline::-ms-track {
+    -webkit-appearance: none;
+    box-shadow: none;
+    border: none;
+    background: transparent;
+}
+
+.sound-button {
+    background-color: gray;
+    color: white;
+    width: 1rem;
+    border-radius: 0%;
+    height: 1rem;
+    border: 0;
+    width: var(--sound-button-width);
+    height: var(--sound-button-width);
+    cursor: pointer;
+    padding: 0;
+    padding: 1.3rem;
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 
 h2#audio__name {
     padding: 0;
-    line-height: 1.5rem;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+p#audio__artist {
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 #initialBody {
     color: rgb(75, 73, 73);
-    font-size: 2rem;
+    font-size: 180%;
     font-weight: 100;
-    padding-top: 15%;
+    text-align: center;
+    display: flex;
+    height: 50vh;
+    align-items: center;
+    justify-content: center;
 }
 
 .loader {
@@ -211,6 +419,7 @@ h2#audio__name {
 
 #modalAudio {
     width: 100%;
+    margin-bottom: 1.5rem;
 }
 
 @media screen and (max-width: 480px) {

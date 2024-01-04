@@ -57,7 +57,6 @@ async function searchSong() {
                 <p>Album: ${song.album.name}</p>
                 <p>Artists: ${song.primaryArtists}</p>
                 <p>Year: ${song.year}</p>
-                <hr>
                 </div>
             </div>
             `;
@@ -70,11 +69,7 @@ async function searchSong() {
     } catch (error) {
         console.error('Error fetching data:', error);
         hideLoadingIndicator();
-        return `
-        <div>
-        <p>Error fetching data: ${error}</p>
-        </div>
-        `
+        alert(error);
     }
 
 }
@@ -126,7 +121,13 @@ function openModal(songUrl, songName, songArtist, songImg) {
     audioName.innerHTML = songName
     audioArtist.innerHTML = songArtist
     modal.style.display = 'flex';
+
+    // Assign a function reference to downloadBtn.onclick
+    downloadBtn.onclick = function () {
+        downloadSong(songUrl, songName, songArtist);
+    };
 }
+
 
 function closeModal() {
     var modal = document.getElementById('modal');
@@ -150,4 +151,38 @@ function showLoadingIndicator() {
 
 function hideLoadingIndicator() {
     document.getElementById('loadingIndicator').style.display = 'none';
+}
+
+var downloadBtn = document.getElementById('downloadBtn');
+
+async function downloadSong(url, songName, artist) {
+    try {
+        const res = await fetch(url);
+        const file = await res.blob();
+
+        let tempUrl = URL.createObjectURL(file);
+        const aTag = document.createElement('a');
+
+        if (url) {
+            aTag.href = tempUrl;
+            aTag.download = songName + ' - ' + artist + '.mp3'; // Replace 'customFileName' with the desired file name
+            document.body.appendChild(aTag);
+            aTag.click();
+            downloadBtn.innerText = 'Downloading...';
+            URL.revokeObjectURL(tempUrl);
+            aTag.remove();
+            downloadBtn.innerText = 'Download';
+        } else {
+            console.error('URL is undefined or null');
+        }
+    } catch (error) {
+        console.error('Error downloading song:', error);
+        downloadBtn.innerText = error;
+    }
+}
+
+
+function selectAllText() {
+    var inputField = document.getElementById("searchInput");
+    inputField.select();
 }
