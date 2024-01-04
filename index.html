@@ -4,6 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#808080">
+    <meta name="description" content="A online music streaming platform.">
+    <meta property="og:title" content="Sargam" />
+    <meta property="og:description" content="A online music streaming platform." />
+    <meta property="og:image"
+        content="https://github.com/Sanket2004/sargam/assets/99745967/f017d352-bc1d-49f5-894d-beea46b1672c" />
+    <meta name="keywords" content="Music">
+    <meta name="author" content="Sanket Banerjee">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -13,31 +21,32 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="shortcut icon" href="./Sargam.svg" type="image/x-icon">
     <title>Sargam - A music streaming platform</title>
 </head>
 
 <body>
     <div class="title__link">
+        <img src="./Sargam.svg" alt="Sargam Logo" class="sargam__logo">
 
         <div class="title__container">
             <h1 class="title">Sargam</h1>
             <p>A music streaming platform</p>
         </div>
-        <a href="https://github.com/Sanket2004">
-            <i class="fa-brands fa-github github__icon"></i>
-        </a>
     </div>
 
     <div class="input__container">
-        <input type="text" id="searchInput" placeholder="Enter song name">
+        <input type="text" id="searchInput" placeholder="Enter song name, album, artist" onkeyup="searchOnEnter(event)">
         <button onclick="searchSong()" id="searchBtn">Search</button>
     </div>
 
-    <h1 id="initialBody"></h1>
+    <h1 id="initialBody">Search your favourite song..</h1>
 
 
-
-    <div class="song-container" id="resultsContainer"></div>
+    <div class="song-container" id="resultsContainer">
+    </div>
+    <button class="loadBtn" onclick="loadMore()" style="display: none;">Load more</button>
 
     <div class="currently-playing" id="currentlyPlaying"></div>
 
@@ -46,6 +55,7 @@
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
             <div id="audioPlayer">
+                <img id="audio__img">
                 <h2 id="audio__name"></h2>
                 <p id="audio__artist"></p>
                 <audio id="modalAudio" controls autoplay>

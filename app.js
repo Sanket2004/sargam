@@ -1,7 +1,25 @@
+var m = document.createElement('meta');
+m.name = 'theme-color';
+m.content = '#808080';
+document.head.appendChild(m);
+
 var currentlyPlayingAudio = null;
 var init = document.getElementById('initialBody');
+var page = 1
+var loadBtn = document.querySelector('.loadBtn');
 
-init.innerHTML='Search your favourite song..'
+document.addEventListener('DOMContentLoaded', function () {
+    // Add an event listener to the "Load more" button
+
+    loadBtn.addEventListener('click', loadMore);
+
+});
+
+function searchOnEnter(event) {
+    if (event.key === "Enter") {
+        document.getElementById("searchBtn").click();
+    }
+}
 
 async function searchSong() {
     var searchTerm = document.getElementById('searchInput').value;
@@ -9,13 +27,15 @@ async function searchSong() {
         alert('Please enter a song name');
         return;
     }
+    init.style.display = 'none';
 
     showLoadingIndicator();
 
     var apiUrl = "https://saavn.me/search/songs?query=";
     try {
-        var response = await fetch(apiUrl + encodeURIComponent(searchTerm));
+        var response = await fetch(apiUrl + encodeURIComponent(searchTerm) + "&page=" + page);
         var jsonData = await response.json();
+        loadBtn.style.display = 'block';
 
         hideLoadingIndicator();
 
@@ -26,12 +46,12 @@ async function searchSong() {
             var songElement = document.createElement('div');
             songElement.classList.add('song-container');
             songElement.onclick = async function () {
-               await openModal(song.downloadUrl[4].link, song.name, song.primaryArtists);
+                await openModal(song.downloadUrl[4].link, song.name, song.primaryArtists, song.image[2].link);
             };
             init.innerHTML = null;
             songElement.innerHTML = `
             <div class="results__items">
-                <img src="${song.image[1].link}" alt="${song.name}">
+                <img src="${song.image[2].link}" alt="${song.name}">
                 <div class="song__details">
                 <h3>${song.name}</h3>
                 <p>Album: ${song.album.name}</p>
@@ -50,7 +70,20 @@ async function searchSong() {
     } catch (error) {
         console.error('Error fetching data:', error);
         hideLoadingIndicator();
+        return `
+        <div>
+        <p>Error fetching data: ${error}</p>
+        </div>
+        `
     }
+
+}
+
+async function loadMore() {
+    page++;
+    await searchSong();
+    // Scroll to the top after loading more results
+    $("html, body").animate({ scrollTop: 0 }, 350);
 }
 
 function playAudio(songUrl) {
@@ -81,13 +114,15 @@ function updateCurrentlyPlaying() {
     }
 }
 
-function openModal(songUrl, songName, songArtist) {
+function openModal(songUrl, songName, songArtist, songImg) {
     var modal = document.getElementById('modal');
     var modalAudio = document.getElementById('modalAudio');
     var audioName = document.getElementById('audio__name');
     var audioArtist = document.getElementById('audio__artist');
+    var audioImg = document.getElementById('audio__img');
 
     modalAudio.src = songUrl;
+    audioImg.src = songImg;
     audioName.innerHTML = songName
     audioArtist.innerHTML = songArtist
     modal.style.display = 'flex';
