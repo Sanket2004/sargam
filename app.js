@@ -174,7 +174,7 @@ async function downloadSong(url, songName, artist) {
 
         if (url) {
             aTag.href = tempUrl;
-            aTag.download = songName + ' - ' + artist + '.mp3'; // Replace 'customFileName' with the desired file name
+            aTag.download = songName + ' - ' + artist; // Replace 'customFileName' with the desired file name
             document.body.appendChild(aTag);
             aTag.click();
             downloadBtn.innerText = 'Downloading...';

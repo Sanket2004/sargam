@@ -5,8 +5,8 @@
 body {
     font-family: 'Source Sans 3', sans-serif;
     display: flex;
-    padding-left: 2rem;
-    padding-right: 2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
     flex-direction: column;
 }
 
@@ -210,6 +210,7 @@ img#audio__img {
 .modal {
     display: none;
     position: fixed;
+    z-index: 11111;
     top: 0;
     left: 0;
     width: 100%;
@@ -274,6 +275,7 @@ img#audio__img {
 
 div#audioPlayer {
     max-width: 25rem;
+    padding-left: 5px;
     margin-left: auto;
     margin-right: auto;
     padding-top: 5%;
