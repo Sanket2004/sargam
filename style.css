@@ -282,6 +282,12 @@ div#audioPlayer {
     max-height: 100%;
 }
 
+#sponsor{
+    padding-bottom: 20%;
+    font-size: 12px;
+    font-weight: 600;
+}
+
 .audio-player {
     --player-button-width: 3em;
     --sound-button-width: 2em;
@@ -530,7 +536,7 @@ p#audio__artist {
     max-height: 100%;
     color: black;
     width: 100%;
-    padding-bottom: 20%;
+    /* padding-bottom: 20%; */
     text-align: justify;
     -webkit-animation: fade .5s;
     animation: fade .5s;

@@ -212,6 +212,7 @@ async function getLyric(url) {
                 // Handle 404 Not Found error
                 console.error(`Lyrics not available for the provided URL: ${songUrl}`);
                 lyricsContainer.innerHTML = 'Lyrics not available';
+                document.getElementById('sponsor').innerHTML = '';
             } else {
                 // Handle other errors
                 throw new Error(`Failed to fetch lyrics. Status: ${response.status}`);
@@ -223,6 +224,7 @@ async function getLyric(url) {
                 const lyrics = data.data.lyrics;
                 console.log(lyrics);
                 lyricsContainer.innerHTML = lyrics;
+                document.getElementById('sponsor').innerHTML = data.data.copyright;
 
                 const snippet = data.data.snippet;
                 const copyright = data.data.copyright;
@@ -236,6 +238,7 @@ async function getLyric(url) {
     } catch (error) {
         console.error('Error fetching lyrics:', error);
         lyricsContainer.innerHTML = 'Error fetching lyrics';
+        document.getElementById('sponsor').innerHTML = '';
     }
 }
 
