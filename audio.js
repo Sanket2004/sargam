@@ -55,5 +55,3 @@ function toggleSound() {
 }
 
 soundButton.addEventListener('click', toggleSound);
-
-window.onload = toggleAudio();

@@ -17,7 +17,8 @@
     <link
         href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&family=Source+Sans+3:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
@@ -28,6 +29,11 @@
 </head>
 
 <body>
+    <div id="backToTopBtn">
+        <span class="material-symbols-outlined">
+            expand_less
+        </span>
+    </div>
     <div class="title__link">
         <img src="./Sargam.svg" alt="Sargam Logo" class="sargam__logo">
 
@@ -38,7 +44,8 @@
     </div>
 
     <div class="input__container">
-        <input type="text" id="searchInput" placeholder="Enter song name, album, artist" onkeyup="searchOnEnter(event)" onclick="selectAllText()">
+        <input type="text" id="searchInput" placeholder="Enter song name, album, artist" onkeyup="searchOnEnter(event)"
+            onclick="selectAllText()">
         <button onclick="searchSong()" id="searchBtn">Search</button>
     </div>
 
@@ -55,36 +62,43 @@
     <div id="modal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
+
             <div id="audioPlayer">
-                <img id="audio__img">
-                <h2 id="audio__name"></h2>
-                <p id="audio__artist"></p>
-                <!-- <audio id="modalAudio" controls autoplay>
+                <div>
+                    <img id="audio__img">
+                    <h2 id="audio__name"></h2>
+                    <p id="audio__artist"></p>
+                    <!-- <audio id="modalAudio" controls autoplay>
                     Your browser does not support the audio element.
                 </audio> -->
-                <div class="audio-player">
-                    <audio id="modalAudio" autoplay>
-                        Your browser does not support the audio element.
-                    </audio>
-                    <div class="controls">
-                      <button class="player-button">
-                        <span class="material-symbols-outlined">
-                            play_arrow
-                            </span>
-                      </button>
-                      <input type="range" class="timeline" max="100" value="0">
-                      <button class="sound-button">
-                        <span class="material-symbols-outlined">
-                            volume_up
-                            </span> 
-                      </button>
+                    <div class="audio-player">
+                        <audio id="modalAudio" autoplay>
+                            Your browser does not support the audio element.
+                        </audio>
+                        <div class="controls">
+                            <button class="player-button">
+                                <span class="material-symbols-outlined">
+                                    play_arrow
+                                </span>
+                            </button>
+                            <input type="range" class="timeline" max="100" value="0">
+                            <button class="sound-button">
+                                <span class="material-symbols-outlined">
+                                    volume_up
+                                </span>
+                            </button>
+                        </div>
                     </div>
-                  </div>
-                  
-                <div class="modal__buttons">
-                    <buttton id="downloadBtn" onclick="downloadSong()">Download</buttton>
-                    <!-- <buttton id="downloadBtn" onclick="downloadSong()">Download</buttton> -->
+
+                    <div class="modal__buttons">
+                        <buttton id="downloadBtn" onclick="downloadSong()">Download</buttton>
+                    </div>
                 </div>
+                <div>
+                    <h2 class="lyricsHeading">Lyrics</h2>
+                    <div id="lyricsContainer"></div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -95,6 +109,7 @@
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="./app.js"></script>
     <script src="./audio.js"></script>
+    <script src="./backToTop.js"></script>
 
 </body>
 

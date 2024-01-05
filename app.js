@@ -46,7 +46,7 @@ async function searchSong() {
             var songElement = document.createElement('div');
             songElement.classList.add('song-container');
             songElement.onclick = async function () {
-                await openModal(song.downloadUrl[4].link, song.name, song.primaryArtists, song.image[2].link);
+                await openModal(song.downloadUrl[4].link, song.name, song.primaryArtists, song.image[2].link, song.id);
             };
             init.innerHTML = null;
             songElement.innerHTML = `
@@ -109,7 +109,11 @@ function updateCurrentlyPlaying() {
     }
 }
 
-function openModal(songUrl, songName, songArtist, songImg) {
+function openModal(songUrl, songName, songArtist, songImg, songId) {
+    // Disable background scrolling
+    document.body.style.overflow = 'hidden';
+    toggleAudio()
+
     var modal = document.getElementById('modal');
     var modalAudio = document.getElementById('modalAudio');
     var audioName = document.getElementById('audio__name');
@@ -122,10 +126,13 @@ function openModal(songUrl, songName, songArtist, songImg) {
     audioArtist.innerHTML = songArtist
     modal.style.display = 'flex';
 
+    getLyric(songId);
+
     // Assign a function reference to downloadBtn.onclick
     downloadBtn.onclick = function () {
         downloadSong(songUrl, songName, songArtist);
     };
+
 }
 
 
@@ -135,6 +142,8 @@ function closeModal() {
 
     modalAudio.pause();
     modal.style.display = 'none';
+    // Restore background scrolling
+    document.body.style.overflow = '';
 }
 
 // Close the modal if the user clicks outside of it
@@ -186,3 +195,49 @@ function selectAllText() {
     var inputField = document.getElementById("searchInput");
     inputField.select();
 }
+
+
+var lyricsContainer = document.getElementById('lyricsContainer');
+
+async function getLyric(url) {
+    const songUrl = 'https://saavn.me/lyrics?id=' + url;
+
+    try {
+        showLoadingIndicator()
+        const response = await fetch(songUrl);
+        hideLoadingIndicator()
+
+        if (!response.ok) {
+            if (response.status === 404) {
+                // Handle 404 Not Found error
+                console.error(`Lyrics not available for the provided URL: ${songUrl}`);
+                lyricsContainer.innerHTML = 'Lyrics not available';
+            } else {
+                // Handle other errors
+                throw new Error(`Failed to fetch lyrics. Status: ${response.status}`);
+            }
+        } else {
+            const data = await response.json();
+
+            if (data && data.status === 'SUCCESS' && data.data && data.data.lyrics) {
+                const lyrics = data.data.lyrics;
+                console.log(lyrics);
+                lyricsContainer.innerHTML = lyrics;
+
+                const snippet = data.data.snippet;
+                const copyright = data.data.copyright;
+                console.log('Snippet:', snippet);
+                console.log('Copyright:', copyright);
+            } else {
+                console.error('Invalid or missing data in the response:', data);
+                lyricsContainer.innerHTML = 'Lyrics not available';
+            }
+        }
+    } catch (error) {
+        console.error('Error fetching lyrics:', error);
+        lyricsContainer.innerHTML = 'Error fetching lyrics';
+    }
+}
+
+
+

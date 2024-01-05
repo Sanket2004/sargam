@@ -10,6 +10,71 @@ body {
     flex-direction: column;
 }
 
+#backToTopBtn {
+    display: none;
+    position: fixed;
+    bottom: 30px;
+    z-index: 1;
+    right: 30px;
+    background-color: rgb(171, 171, 171);
+    color: white;
+    border: none;
+    opacity: 0;
+    border-radius: 0%;
+    height: 2.5rem;
+    width: 2.5rem;
+    cursor: pointer;
+    transition: opacity 0.3s, transform 0.3s;
+  }
+
+
+  #backToTopBtn:hover{
+    background-color: rgba(0, 0, 0, 0.7);
+transition: ease-in 0.2s;
+  }
+  
+  #backToTopBtn.show {
+    animation: fadeIn 0.5s ease-in-out; /* Add fadeIn animation */
+    opacity: 1;
+    z-index:2222;
+    display: flex;
+    font-size: 1rem;
+    justify-content: center;
+    align-items: center;
+    transform: scale(1);
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: white;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: gray;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(66, 66, 66);
+  }
+
 #downloadBtn {
     width: 100%;
     background-color: grey;
@@ -18,9 +83,14 @@ body {
     justify-content: center;
     display: flex;
     align-items: center;
-    margin-bottom: 2rem;
     cursor: pointer;
+}
 
+
+.lyricsHeading{
+    margin: 0;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
 }
 
 .sargam__logo {
@@ -130,6 +200,7 @@ button.loadBtn {
 img#audio__img {
     width: 100%;
     display: block;
+    padding-top: 20%;
     margin-left: auto;
     margin-right: auto;
     border-radius: 5px;
@@ -166,8 +237,8 @@ img#audio__img {
 .modal__buttons {
     display: flex;
     flex-direction: row;
-    width: 100%;
     gap: 1rem;
+    width: 100%;
 }
 
 @keyframes fade {
@@ -182,8 +253,8 @@ img#audio__img {
 
 .close {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
+    top: 20px;
+    right: 20px;
     width: 2.5rem;
     height: 2.5rem;
     /* padding: 1rem; */
@@ -202,10 +273,11 @@ img#audio__img {
 }
 
 div#audioPlayer {
-    max-width: 18rem;
+    max-width: 25rem;
     margin-left: auto;
     margin-right: auto;
     padding-top: 5%;
+    max-height: 100%;
 }
 
 .audio-player {
@@ -445,4 +517,21 @@ p#audio__artist {
         padding-right: 2rem;
         flex-direction: column;
     }
+
+    adiv#audioPlayer{
+        width: 100%;
+    }
+}
+
+
+#lyricsContainer {
+    max-height: 100%;
+    color: black;
+    width: 100%;
+    padding-bottom: 20%;
+    text-align: justify;
+    -webkit-animation: fade .5s;
+    animation: fade .5s;
+    align-items: center;
+    justify-content: center;
 }
