@@ -31,7 +31,7 @@ async function searchSong() {
 
     showLoadingIndicator();
 
-    var apiUrl = "https://saavn.me/search/songs?query=";
+    var apiUrl = "https://saavn.dev/search/songs?query=";
     try {
         var response = await fetch(apiUrl + encodeURIComponent(searchTerm) + "&page=" + page);
         var jsonData = await response.json();
